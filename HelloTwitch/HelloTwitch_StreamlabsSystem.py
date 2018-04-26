@@ -7,10 +7,10 @@ ScriptName = "HelloTwitch"
 Website = "https://github.com/PakL/HelloTwitch"
 Description = "Will give you a list of viewers that said hello (Please right-click + Insert API key)"
 Creator = "PakL"
-Version = "0.0.1"
+Version = "0.0.2"
 
 ht_phrases = []
-ht_users = []
+ht_users = {}
 
 def SetupSettings(data):
 	global ht_phrases
@@ -35,13 +35,27 @@ def Init():
 	return
 
 def Execute(data):
+	global ht_users
 	if len(data.User) > 0 and data.IsChatMessage() and data.IsFromTwitch():
 		if not data.IsWhisper():
-			Parent.Log(ScriptName, data.User + ': ' + data.Message)
-			Parent.Log(ScriptName, ';'.join(ht_phrases))
+			doesMatch = False
+			if len(''.join(ht_phrases)) <= 0:
+				doesMatch = True
+			else:
+				for index in range(len(ht_phrases)):
+					match = re.search("(^| )" + re.escape(ht_phrases[index]) + "( |$)", data.Message, re.IGNORECASE)
+					if match:
+						doesMatch = True
+			if doesMatch:
+				Parent.Log(ScriptName, 'Found matching message from ' + data.User + ': ' + data.Message)
+				ht_users[data.User] = data.UserName
+				Parent.Log(ScriptName, ', '.join(ht_users))
+
+	Parent.BroadcastWsEvent("HELLO_TWITCH_GREETING", json.dumps(ht_users))
 	return
 
 def Tick():
+	#Parent.BroadcastWsEvent("HELLO_TWITCH_GREETING", json.dumps(ht_users))
 	return
 
 def ReloadSettings(jsonData):
@@ -59,4 +73,10 @@ def openHelloWindow():
 	path = os.path.join(os.path.dirname(__file__), 'frame', 'index.html')
 	Parent.Log(ScriptName, "Open file " + path)
 	os.startfile(path, 'open')
+	return
+
+def clearUserList():
+	global ht_users
+	ht_users = {}
+	Parent.BroadcastWsEvent("HELLO_TWITCH_GREETING", json.dumps(ht_users))
 	return

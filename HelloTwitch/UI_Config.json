@@ -7,12 +7,27 @@
 		"tooltip": "Only count greeting with at least one of these phrases. Seperate phrases with semicolon (;).",
 		"group": ""
 	},
+	"darkTheme": {
+		"type": "checkbox",
+		"value": true,
+		"label": "Dark themed",
+		"tooltip": "Make the window background dark and font bright?",
+		"group": ""
+	},
+	"clearList": {
+		"type": "button",
+		"label": "Clear user list",
+		"tooltip": "Clears current user list",
+		"function": "clearUserList",
+		"wsevent": "",
+		"group": "Actions"
+	},
 	"openWindow": {
 		"type": "button",
 		"label": "Open window",
 		"tooltip": "Opens a browser window that shows you the viewers that said hello",
 		"function": "openHelloWindow",
 		"wsevent": "",
-		"group": ""
+		"group": "Actions"
 	}
 }

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Hello Twitch</title>
+		<style type="text/css">
+			body {
+				font-family: sans-serif;
+				color: #121f27;
+				background: #ffffff;
+			}
+			body.dark {
+				background: #121f27;
+				color: #ffffff;
+			}
+		</style>
+	</head>
+	<body>
+		<output id="status">Please wait...</output>
+		<ul id="userlist"></ul>
+
+		<script type="application/javascript" src="../API_Key.js"></script>
+		<script type="application/javascript" src="../settings.js"></script>
+		<script type="application/javascript" src="list.js"></script>
+		<script type="application/javascript">
+			var statusOutput = document.querySelector('#status')
+
+			if(typeof(API_Key) === 'undefined' || typeof(API_Socket) === 'undefined' || typeof(settings) === 'undefined') {
+				statusOutput.innerText = 'Please make sure to save settings and insert api key! Then reload or re-open this window.'
+			} else {
+				if(settings.darkTheme) {
+					document.querySelector('body').classList.add('dark')
+				}
+
+				statusOutput.innerText = 'Connecting with Streamlabs Chatbot'
+			
+				// Load websocket script
+				var wsScript = document.createElement('script')
+				wsScript.setAttribute('type', 'application/javascript')
+				wsScript.setAttribute('src', 'ws.js')
+				document.querySelector('body').appendChild(wsScript)
+			}
+		</script>
+	</body>
+</html>
