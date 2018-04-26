@@ -1,0 +1,18 @@
+{
+	"output_file": "settings.json",
+	"filterPhrases": {
+		"type": "textbox",
+		"value": "",
+		"label": "Phrase filter",
+		"tooltip": "Only count greeting with at least one of these phrases. Seperate phrases with semicolon (;).",
+		"group": ""
+	},
+	"openWindow": {
+		"type": "button",
+		"label": "Open window",
+		"tooltip": "Opens a browser window that shows you the viewers that said hello",
+		"function": "openHelloWindow",
+		"wsevent": "",
+		"group": ""
+	}
+}
