@@ -52,47 +52,6 @@ def Execute(data):
 				Parent.Log(ScriptName, '[' + strftime("%H:%M:%S", localtime()) + "] Found matching message from " + data.User + ': ' + data.Message)
 				AppendUserToList(data.User, data.UserName)
 
-
-				AppendUserToList('aaa', 'aaa')
-				AppendUserToList('zzz', 'zzz')
-				AppendUserToList('ggg', 'ggg')
-				AppendUserToList('uuu', 'uuu')
-				AppendUserToList('ccc', 'ccc')
-
-				AppendUserToList('bbb', 'bbb')
-				AppendUserToList('yyy', 'yyy')
-				AppendUserToList('hhh', 'hhh')
-				AppendUserToList('ppp', 'ppp')
-				AppendUserToList('ttt', 'ttt')
-
-
-				AppendUserToList('aaaaaaa', 'aaaaaaa')
-				AppendUserToList('bbbbbbb', 'bbbbbbb')
-				AppendUserToList('ccccccc', 'ccccccc')
-				AppendUserToList('ddddddd', 'ddddddd')
-				AppendUserToList('eeeeeee', 'eeeeeee')
-				AppendUserToList('fffffff', 'fffffff')
-				AppendUserToList('ggggggg', 'ggggggg')
-				AppendUserToList('hhhhhhh', 'hhhhhhh')
-				AppendUserToList('iiiiiii', 'iiiiiii')
-				AppendUserToList('jjjjjjj', 'jjjjjjj')
-				AppendUserToList('kkkkkkk', 'kkkkkkk')
-				AppendUserToList('lllllll', 'lllllll')
-				AppendUserToList('mmmmmmm', 'mmmmmmm')
-				AppendUserToList('nnnnnnn', 'nnnnnnn')
-				AppendUserToList('ooooooo', 'ooooooo')
-				AppendUserToList('ppppppp', 'ppppppp')
-				AppendUserToList('qqqqqqq', 'qqqqqqq')
-				AppendUserToList('rrrrrrr', 'rrrrrrr')
-				AppendUserToList('sssssss', 'sssssss')
-				AppendUserToList('ttttttt', 'ttttttt')
-				AppendUserToList('uuuuuuu', 'uuuuuuu')
-				AppendUserToList('vvvvvvv', 'vvvvvvv')
-				AppendUserToList('wwwwwww', 'wwwwwww')
-				AppendUserToList('xxxxxxx', 'xxxxxxx')
-				AppendUserToList('yyyyyyy', 'yyyyyyy')
-				AppendUserToList('zzzzzzz', 'zzzzzzz')
-
 	Parent.BroadcastWsEvent("HELLO_TWITCH_GREETING", json.dumps(ht_users))
 	return
 
