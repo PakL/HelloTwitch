@@ -20,7 +20,7 @@
 		"tooltip": "Clears current user list",
 		"function": "clearUserList",
 		"wsevent": "",
-		"group": "Actions"
+		"group": ""
 	},
 	"openWindow": {
 		"type": "button",
@@ -28,6 +28,6 @@
 		"tooltip": "Opens a browser window that shows you the viewers that said hello",
 		"function": "openHelloWindow",
 		"wsevent": "",
-		"group": "Actions"
+		"group": ""
 	}
 }

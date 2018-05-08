@@ -4,6 +4,12 @@
 		<meta charset="utf-8">
 		<title>Hello Twitch</title>
 		<style type="text/css">
+			html, body {
+				height: 100%;
+				width: 100%;
+				padding: 0;
+				margin: 0;
+			}
 			body {
 				font-family: sans-serif;
 				color: #121f27;
@@ -12,6 +18,31 @@
 			body.dark {
 				background: #121f27;
 				color: #ffffff;
+			}
+			#status {
+				display: block;
+				padding: 15px;
+			}
+			#userlist {
+				display: -webkit-flex;
+				display: flex;
+				-webkit-flex-flow: wrap column;
+				flex-flow: wrap column;
+				max-height: calc(100% - 50px);
+
+				list-style: none;
+				padding: 0;
+				margin: 0;
+				margin-left: 10px;
+			}
+			#userlist > li {
+				padding: 3px 5px;
+			}
+			#userlist > li:nth-child(odd) {
+				background-color: #e7e7e7;
+			}
+			body.dark #userlist > li:nth-child(odd) {
+				background-color: #223846;
 			}
 		</style>
 	</head>
@@ -25,8 +56,16 @@
 		<script type="application/javascript">
 			var statusOutput = document.querySelector('#status')
 
-			if(typeof(API_Key) === 'undefined' || typeof(API_Socket) === 'undefined' || typeof(settings) === 'undefined') {
-				statusOutput.innerText = 'Please make sure to save settings and insert api key! Then reload or re-open this window.'
+			// Using default settings
+			if(typeof(settings) === 'undefined') {
+				var settings = {
+					"filterPhrases": "",
+					"darkTheme": true
+				}
+			}
+
+			if(typeof(API_Key) === 'undefined' || typeof(API_Socket) === 'undefined') {
+				statusOutput.innerText = 'Please make sure to right-click Script and insert api key! Then reload or re-open this window.'
 			} else {
 				if(settings.darkTheme) {
 					document.querySelector('body').classList.add('dark')

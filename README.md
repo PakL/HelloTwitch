@@ -5,4 +5,13 @@ This makes it easier to greet your viewer. You can optionally specify phrases th
 
 In the settings you will also find a button to open the list as an html page that will connect to Streamlabs Chatbot and retrieve the list. (Otherwise you wouldn't be able to see it.)
 
-[Download](https://github.com/PakL/HelloTwitch/archive/master.zip)
+[Download](https://github.com/PakL/HelloTwitch/archive/master.zip) (0.0.4)
+
+## Changelog
+
+### 2018-05-08
+* User list is now printed out chronically
+* Removed settings buttons from group for easier access
+* List window no longer requires saving the settings. Instead uses default settings
+* List is now split into multiple columns so scrolling should no longer be needed (not working in Internet Explorer)
+* Better readability with more line spacing and alternating coloring

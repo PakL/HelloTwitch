@@ -9,10 +9,11 @@ ScriptName = "HelloTwitch"
 Website = "https://github.com/PakL/HelloTwitch"
 Description = "Will give you a list of viewers that said hello (Please right-click + Insert API key)"
 Creator = "PakL"
-Version = "0.0.3"
+Version = "0.0.4"
 
 ht_phrases = []
-ht_users = {}
+ht_users = []
+ht_usersListed = {}
 
 def SetupSettings(data):
 	global ht_phrases
@@ -37,7 +38,6 @@ def Init():
 	return
 
 def Execute(data):
-	global ht_users
 	if len(data.User) > 0 and data.IsChatMessage() and data.IsFromTwitch():
 		if not data.IsWhisper():
 			doesMatch = False
@@ -50,14 +50,62 @@ def Execute(data):
 						doesMatch = True
 			if doesMatch:
 				Parent.Log(ScriptName, '[' + strftime("%H:%M:%S", localtime()) + "] Found matching message from " + data.User + ': ' + data.Message)
-				ht_users[data.User] = data.UserName
-				Parent.Log(ScriptName, '[' + strftime("%H:%M:%S", localtime()) + "] Users in the list now: " + ', '.join(ht_users))
+				AppendUserToList(data.User, data.UserName)
+
+
+				AppendUserToList('aaa', 'aaa')
+				AppendUserToList('zzz', 'zzz')
+				AppendUserToList('ggg', 'ggg')
+				AppendUserToList('uuu', 'uuu')
+				AppendUserToList('ccc', 'ccc')
+
+				AppendUserToList('bbb', 'bbb')
+				AppendUserToList('yyy', 'yyy')
+				AppendUserToList('hhh', 'hhh')
+				AppendUserToList('ppp', 'ppp')
+				AppendUserToList('ttt', 'ttt')
+
+
+				AppendUserToList('aaaaaaa', 'aaaaaaa')
+				AppendUserToList('bbbbbbb', 'bbbbbbb')
+				AppendUserToList('ccccccc', 'ccccccc')
+				AppendUserToList('ddddddd', 'ddddddd')
+				AppendUserToList('eeeeeee', 'eeeeeee')
+				AppendUserToList('fffffff', 'fffffff')
+				AppendUserToList('ggggggg', 'ggggggg')
+				AppendUserToList('hhhhhhh', 'hhhhhhh')
+				AppendUserToList('iiiiiii', 'iiiiiii')
+				AppendUserToList('jjjjjjj', 'jjjjjjj')
+				AppendUserToList('kkkkkkk', 'kkkkkkk')
+				AppendUserToList('lllllll', 'lllllll')
+				AppendUserToList('mmmmmmm', 'mmmmmmm')
+				AppendUserToList('nnnnnnn', 'nnnnnnn')
+				AppendUserToList('ooooooo', 'ooooooo')
+				AppendUserToList('ppppppp', 'ppppppp')
+				AppendUserToList('qqqqqqq', 'qqqqqqq')
+				AppendUserToList('rrrrrrr', 'rrrrrrr')
+				AppendUserToList('sssssss', 'sssssss')
+				AppendUserToList('ttttttt', 'ttttttt')
+				AppendUserToList('uuuuuuu', 'uuuuuuu')
+				AppendUserToList('vvvvvvv', 'vvvvvvv')
+				AppendUserToList('wwwwwww', 'wwwwwww')
+				AppendUserToList('xxxxxxx', 'xxxxxxx')
+				AppendUserToList('yyyyyyy', 'yyyyyyy')
+				AppendUserToList('zzzzzzz', 'zzzzzzz')
 
 	Parent.BroadcastWsEvent("HELLO_TWITCH_GREETING", json.dumps(ht_users))
 	return
 
 def Tick():
 	return
+
+def AppendUserToList(user, username):
+	global ht_users, ht_usersListed
+	if not user in ht_usersListed:
+		ht_users.append(username)
+		ht_usersListed[user] = username
+		Parent.Log(ScriptName, '[' + strftime("%H:%M:%S", localtime()) + "] Users in the list now: " + ', '.join(ht_users))
+
 
 def ReloadSettings(jsonData):
 	global ht_phrases
@@ -77,7 +125,8 @@ def openHelloWindow():
 	return
 
 def clearUserList():
-	global ht_users
-	ht_users = {}
+	global ht_users, ht_usersListed
+	ht_users = []
+	ht_usersListed = {}
 	Parent.BroadcastWsEvent("HELLO_TWITCH_GREETING", json.dumps(ht_users))
 	return
