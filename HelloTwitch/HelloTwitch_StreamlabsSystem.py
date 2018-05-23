@@ -9,19 +9,24 @@ ScriptName = "HelloTwitch"
 Website = "https://github.com/PakL/HelloTwitch"
 Description = "Will give you a list of viewers that said hello (Please right-click + Insert API key)"
 Creator = "PakL"
-Version = "0.0.4"
+Version = "0.1.0"
 
 ht_phrases = []
+ht_userFilter = []
 ht_users = []
 ht_usersListed = {}
 
 def SetupSettings(data):
-	global ht_phrases
+	global ht_phrases, ht_userFilter
 	Parent.Log(ScriptName, '[' + strftime("%H:%M:%S", localtime()) + "] Set up settings")
 
 	ht_phrases = data["filterPhrases"].split(';')
 	for index in range(len(ht_phrases)):
 		ht_phrases[index] = ht_phrases[index].strip()
+
+	ht_userFilter = data["filterUsers"].split(';')
+	for index in range(len(ht_userFilter)):
+		ht_userFilter[index] = ht_userFilter[index].strip()
 	return
 
 def Init():
@@ -41,6 +46,8 @@ def Execute(data):
 	if len(data.User) > 0 and data.IsChatMessage() and data.IsFromTwitch():
 		if not data.IsWhisper():
 			doesMatch = False
+			doFilter = False
+
 			if len(''.join(ht_phrases)) <= 0:
 				doesMatch = True
 			else:
@@ -48,7 +55,13 @@ def Execute(data):
 					match = re.search("(^| )" + re.escape(ht_phrases[index]) + "( |$)", data.Message, re.IGNORECASE)
 					if match:
 						doesMatch = True
-			if doesMatch:
+
+			if len(''.join(ht_userFilter)) > 0:
+				for index in range(len(ht_userFilter)):
+					if data.User.lower() == ht_userFilter[index].lower():
+						doFilter = True
+			
+			if doesMatch and not doFilter:
 				Parent.Log(ScriptName, '[' + strftime("%H:%M:%S", localtime()) + "] Found matching message from " + data.User + ': ' + data.Message)
 				AppendUserToList(data.User, data.UserName)
 

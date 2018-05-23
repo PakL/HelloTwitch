@@ -7,6 +7,13 @@
 		"tooltip": "Only count greeting with at least one of these phrases. Seperate phrases with semicolon (;).",
 		"group": ""
 	},
+	"filterUsers": {
+		"type": "textbox",
+		"value": "",
+		"label": "User filter",
+		"tooltip": "Similar to the phrase filter but you can filer out users you don't want to be listet (e.g. your bots). Also seperate with semicolon (;).",
+		"group": ""
+	},
 	"darkTheme": {
 		"type": "checkbox",
 		"value": true,
