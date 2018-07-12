@@ -9,7 +9,7 @@ ScriptName = "HelloTwitch"
 Website = "https://github.com/PakL/HelloTwitch"
 Description = "Will give you a list of viewers that said hello (Please right-click + Insert API key)"
 Creator = "PakL"
-Version = "0.1.1"
+Version = "0.2.0"
 
 ht_phrases = []
 ht_userFilter = []
