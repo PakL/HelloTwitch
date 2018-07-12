@@ -9,16 +9,17 @@ ScriptName = "HelloTwitch"
 Website = "https://github.com/PakL/HelloTwitch"
 Description = "Will give you a list of viewers that said hello (Please right-click + Insert API key)"
 Creator = "PakL"
-Version = "0.2.1"
+Version = "0.2.2"
 
 ht_phrases = []
 ht_userFilter = []
 ht_users = []
 ht_usersListed = {}
+ht_autoClear = False
 ht_wasOnline = False
 
 def SetupSettings(data):
-	global ht_phrases, ht_userFilter
+	global ht_phrases, ht_userFilter, ht_autoClear
 	Parent.Log(ScriptName, '[' + strftime("%H:%M:%S", localtime()) + "] Set up settings")
 
 	ht_phrases = data["filterPhrases"].split(';')
@@ -28,6 +29,8 @@ def SetupSettings(data):
 	ht_userFilter = data["filterUsers"].split(';')
 	for index in range(len(ht_userFilter)):
 		ht_userFilter[index] = ht_userFilter[index].strip()
+
+	ht_autoClear = data["autoClear"]
 	return
 
 def Init():
@@ -49,7 +52,7 @@ def Execute(data):
 		if not data.IsWhisper():
 			onMessage(data)
 
-	if ht_wasOnline and not Parent.IsLive():
+	if ht_autoClear and ht_wasOnline and not Parent.IsLive():
 		clearUserList()
 	ht_wasOnline = Parent.IsLive()
 	Parent.BroadcastWsEvent("HELLO_TWITCH_GREETING", json.dumps(ht_users))
