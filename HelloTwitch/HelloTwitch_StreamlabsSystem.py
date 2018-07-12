@@ -9,7 +9,7 @@ ScriptName = "HelloTwitch"
 Website = "https://github.com/PakL/HelloTwitch"
 Description = "Will give you a list of viewers that said hello (Please right-click + Insert API key)"
 Creator = "PakL"
-Version = "0.2.0"
+Version = "0.2.1"
 
 ht_phrases = []
 ht_userFilter = []
@@ -44,6 +44,7 @@ def Init():
 	return
 
 def Execute(data):
+	global ht_wasOnline
 	if len(data.User) > 0 and data.IsChatMessage() and data.IsFromTwitch():
 		if not data.IsWhisper():
 			onMessage(data)
