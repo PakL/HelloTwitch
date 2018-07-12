@@ -29,6 +29,13 @@
 		"wsevent": "",
 		"group": ""
 	},
+	"autoClear": {
+		"type": "checkbox",
+		"value": false,
+		"label": "Auto clear list after stream",
+		"tooltip": "Clears list after you've gone offline. Helpful when having your PC running between streams.",
+		"group": ""
+	},
 	"openWindow": {
 		"type": "button",
 		"label": "Open window",
